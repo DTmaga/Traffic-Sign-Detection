@@ -1,0 +1,17 @@
+# Chặn thư mục môi trường ảo
+env/
+venv/
+ENV/
+
+# Chặn các file cache của Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Chặn cấu hình của IDE (nếu bạn dùng VS Code hoặc PyCharm)
+.vscode/
+.idea/
+
+# Chặn các file chứa thông tin bảo mật (nếu sau này có dùng)
+.env
