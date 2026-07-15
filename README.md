@@ -29,6 +29,8 @@ pip install -r requirements.txt
 python main.py
 ```
 
+Before running the program, update the input video path in the configuration section (line 5 of `main.py`).
+
 ## Author
 
 Vo Huynh Duy Tan
