@@ -2,17 +2,11 @@ import cv2
 import numpy as np
 
 # ===== CONFIG =====
-VIDEO_LIST = ["video1.mp4", "video2.mp4"]
+VIDEO_LIST = []#    ["video1.mp4", "video2.mp4", "video3.mp4"]  # Add your video file paths here
 ESC_KEY = ord('q')
 FRAME_WIDTH, FRAME_HEIGHT = 640, 360
 MIN_CONTOUR_AREA, MAX_CONTOUR_AREA = 100, 4000
 COLOR_FILL_RATIO = 0.4
-
-student_ids = [ 
-    "Student ID: 523H0191",
-    "            523H0166",
-    "            524H0187"
-]
 
 # Color HSV
 lower_red1, upper_red1 = np.array([0,60,40]), np.array([10,255,255])
@@ -172,12 +166,6 @@ def draw_boxes(frame, detected_list):
         cv2.rectangle(frame,(x,y),(x+w,y+h),color,2)
         cv2.putText(frame,label,(x,y-5),cv2.FONT_HERSHEY_SIMPLEX,0.5,color,1)
 
-def draw_student_ids(frame, ids):
-    y0, dy = 20, 20
-    for i, text in enumerate(ids):
-        y = y0 + i*dy
-        cv2.putText(frame, text, (10, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
-
 # ===== MAIN LOOP =====
 for VIDEO_PATH in VIDEO_LIST:
     cap = cv2.VideoCapture(VIDEO_PATH)
@@ -207,7 +195,6 @@ for VIDEO_PATH in VIDEO_LIST:
         tracked_objects, next_obj_id = update_tracks(detected, tracked_objects, next_obj_id, frame_counter)
         confirmed = get_confirmed(tracked_objects)
         draw_boxes(enhanced, confirmed)
-        draw_student_ids(enhanced, student_ids)
 
         cv2.imshow("Result", enhanced)
         out.write(enhanced)
